@@ -20,7 +20,7 @@ public class FavoriteProductApplicationTests {
 	@Test
 	public void shouldReturnInitialProductLoad() {
 
-		Product productTest = new Product(1, new BigDecimal(1599.99),
+		Product productTest = new Product(1, BigDecimal.valueOf(1599.99),
 				"https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQ_zRJioBh7-wXdtLrC4petOj-tYiJxtObUIBJ2vk639vof8-TSgUpGexRLZD7dzDGMQteicOLb&usqp=CAc",
 				"LG", "LG SMART TV PRO", 4.0);
 
