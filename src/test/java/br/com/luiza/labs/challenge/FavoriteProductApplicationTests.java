@@ -4,12 +4,14 @@ import br.com.luiza.labs.challenge.entity.Product;
 import br.com.luiza.labs.challenge.service.impl.ProductServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import java.math.BigDecimal;
 import java.util.Optional;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
+@AutoConfigureMockMvc
 public class FavoriteProductApplicationTests {
 
 	@Autowired
@@ -27,5 +29,4 @@ public class FavoriteProductApplicationTests {
 		Optional<Product> product = productService.findProductById(1);
 		assertThat(product.get().getTitle()).isEqualTo(productTest.getTitle());
 	}
-
 }

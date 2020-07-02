@@ -29,8 +29,8 @@ dependencies {
 	compile group: 'mysql', name: 'mysql-connector-java', version: '8.0.11'
 	compile group: 'io.springfox', name: 'springfox-swagger2', version: '2.9.2'
 	compile group: 'io.springfox', name: 'springfox-swagger-ui', version: '2.0.2'
-	//implementation 'org.springframework.boot:spring-boot-starter-security'
-	//compile group: 'io.jsonwebtoken', name: 'jjwt', version: '0.9.1'
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+	compile group: 'io.jsonwebtoken', name: 'jjwt', version: '0.9.1'
 
 
 	compileOnly 'org.projectlombok:lombok:1.18.12'
@@ -40,9 +40,7 @@ dependencies {
 	testAnnotationProcessor 'org.projectlombok:lombok:1.18.12'
 
 	//TEST
-	testImplementation('org.springframework.boot:spring-boot-starter-test') {
-		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
-	}
+	testImplementation('org.springframework.boot:spring-boot-starter-test')
 }
 
 test {
