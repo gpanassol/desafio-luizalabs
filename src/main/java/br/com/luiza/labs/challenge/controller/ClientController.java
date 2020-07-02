@@ -8,12 +8,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping(value = "/client")
-@Api(value="client", description="Operations pertaining to Client")
+@Api(value = "client", description = "Operations pertaining to Client")
 public class ClientController {
 
     @ApiOperation(value = "Hello World!")
-    @RequestMapping(value="/hello", method = RequestMethod.GET)
-    public String helloworld(){
+    @RequestMapping(value = "/hello", method = RequestMethod.GET)
+    public String helloworld() {
         return "Oi";
     }
 }

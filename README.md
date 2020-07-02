@@ -19,7 +19,7 @@ Para acesso:
 
 ## Acesso
 
-A Aplicação esta disponível utilizando [Spring Secutiry](https://spring.io/projects/spring-security)
+O controle de acesso esta disponível utilizando [Spring Secutiry](https://spring.io/projects/spring-security)
 
 Para acesso utilize o json
 
@@ -31,3 +31,29 @@ Para acesso utilize o json
 ```
 
 Endpoint POST em [/api/authenticate](http://localhost:8080/api/authenticate) 
+
+## Checkstyle
+
+O controle de qualidade na estilização e organização do código está disponível utilizando [Checkstyle](https://checkstyle.org/index.html). A validação é feita durante build.
+
+Para build do projeto
+
+```
+./gradlew clean build 
+```
+
+*Usado como base o checkstyle disponibilizado pela google [aqui](https://google.github.io/styleguide/javaguide.html).
+
+## SpotBug
+
+O controle de erros no código java (usado para diminir o máximo) esta disponível utilizando [SpotBugs](https://spotbugs.github.io/). A validação é feita durante build.
+
+Para checkar:
+```
+./gradlew check 
+```
+
+Para build do projeto:
+```
+./gradlew clean build 
+```

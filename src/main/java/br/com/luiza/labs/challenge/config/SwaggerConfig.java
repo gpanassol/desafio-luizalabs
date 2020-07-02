@@ -26,6 +26,7 @@ public class SwaggerConfig extends WebMvcConfigurationSupport {
                 .build()
                 .apiInfo(metaData());
     }
+
     private ApiInfo metaData() {
         return new ApiInfoBuilder()
                 .title("Desafio Luizalabs")
@@ -36,6 +37,7 @@ public class SwaggerConfig extends WebMvcConfigurationSupport {
                 .contact(new Contact("Gabriel Panassol", "https://github.com/gpanassol/desafio-luizalabs/", "gpanassol@gmail.com"))
                 .build();
     }
+
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("swagger-ui.html").addResourceLocations("classpath:/META-INF/resources/");

@@ -1,9 +1,12 @@
 package br.com.luiza.labs.challenge.entity;
 
 import lombok.Data;
-
-import javax.persistence.*;
 import java.math.BigDecimal;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Data
 @Entity
@@ -12,22 +15,22 @@ public class Product {
 
     @Id
     @GeneratedValue
-    @Column(name="id")
+    @Column(name = "id")
     private Integer id;
 
-    @Column(name="price")
+    @Column(name = "price")
     private BigDecimal price;
 
-    @Column(name="url")
+    @Column(name = "url")
     private String url;
 
-    @Column(name="marca")
+    @Column(name = "marca")
     private String marca;
 
-    @Column(name="title")
+    @Column(name = "title")
     private String title;
 
-    @Column(name="review_score")
+    @Column(name = "review_score")
     private Double reviewScore;
 
     public Product(){}
