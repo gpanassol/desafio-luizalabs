@@ -30,12 +30,12 @@ public class ProductControllerTest extends AbstractMvcTest {
     }
 
     @Test
-    public void shouldNoContentTest() throws Exception {
+    public void shouldReturnListProduct() throws Exception {
         MvcResult result = getResultToken(mock).andReturn();
         String token = result.getResponse().getHeaders("Authorization").get(0);
         mock.perform(
-                get("/product/123456789")
+                get("/product/?page=0")
                         .header("Authorization", token))
-                .andExpect(status().isNoContent());
+                .andExpect(status().isOk());
     }
 }

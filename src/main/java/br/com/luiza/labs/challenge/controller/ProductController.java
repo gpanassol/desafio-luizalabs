@@ -7,16 +7,17 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
+
+import java.util.List;
 
 @RestController
 @RequestMapping(value = "/product")
-@Api(value = "product", description = "Operations pertaining to Product")
+@Api(value = "Product", description = "Operations pertaining to product")
 public class ProductController {
 
     @Autowired
@@ -31,5 +32,20 @@ public class ProductController {
     @RequestMapping(value = "{id}", method = RequestMethod.GET)
     public Product getProductById(@PathVariable Integer id) {
         return service.findProductById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NO_CONTENT));
+    }
+
+    @ApiOperation(value = "Find all product pagined")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Return a list products pagined", response = Product.class),
+            @ApiResponse(code = 204, message = "No Content"),
+            @ApiResponse(code = 403, message = "Forbidden. Access is denied")
+    })
+    @RequestMapping(method = RequestMethod.GET)
+    public ResponseEntity findAll(@RequestParam(defaultValue = "1") Integer page){
+        List<Product> products = service.findPaginated(page);
+        if(products.size() > 0){
+            return ResponseEntity.ok(products);
+        }
+        return ResponseEntity.noContent().build();
     }
 }

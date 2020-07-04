@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping(value = "/client")
-@Api(value = "client", description = "Operations pertaining to Client")
+@Api(value = "Client", description = "Operations pertaining to client")
 public class ClientController {
 
     @ApiOperation(value = "Hello World!")
