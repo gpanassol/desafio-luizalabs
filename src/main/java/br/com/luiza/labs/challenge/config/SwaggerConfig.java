@@ -21,17 +21,19 @@ public class SwaggerConfig extends WebMvcConfigurationSupport {
     public Docket productApi() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
-                .apis(RequestHandlerSelectors.any())
+                .apis(RequestHandlerSelectors.basePackage("br.com.luiza.labs.challenge.controller"))
                 .paths(PathSelectors.any())
                 .build()
-                .apiInfo(metaData());
+                .useDefaultResponseMessages(false)
+                .apiInfo(metaData())
+        ;
     }
 
     private ApiInfo metaData() {
         return new ApiInfoBuilder()
-                .title("Desafio Luizalabs")
+                .title("API Documentation")
                 .description("\"Spring Boot REST API for Challenger Luizalabs\"")
-                .version("0.2.0")
+                .version("0.5.0")
                 .license("GNU GENERAL PUBLIC LICENSE")
                 .licenseUrl("https://www.gnu.org/licenses/")
                 .contact(new Contact("Gabriel Panassol", "https://github.com/gpanassol/desafio-luizalabs/", "gpanassol@gmail.com"))

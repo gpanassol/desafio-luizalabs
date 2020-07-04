@@ -3,38 +3,33 @@ package br.com.luiza.labs.challenge.entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import java.math.BigDecimal;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "product")
-public class Product {
+@Table(name = "product_client")
+public class ProductClient {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     private Integer id;
 
-    @Column(name = "price")
-    private BigDecimal price;
+    @ManyToOne
+    @JoinColumn(name = "client_id")
+    private Client client;
 
-    @Column(name = "url")
-    private String url;
+    @ManyToOne
+    @JoinColumn(name = "product_id")
+    private Product product;
 
-    @Column(name = "marca")
-    private String marca;
-
-    @Column(name = "title")
-    private String title;
-
-    @Column(name = "review_score")
-    private Double reviewScore;
 }
