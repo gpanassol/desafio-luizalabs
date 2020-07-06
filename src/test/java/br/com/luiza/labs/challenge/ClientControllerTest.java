@@ -44,7 +44,7 @@ public class ClientControllerTest extends AbstractMvcTest {
         Client client = new Client();
         client.setName("CLIENTE TESTE 2");
         client.setEmail("teste@teste.com.br");
-        client.setProducts(null);
+        client.setFavorites(null);
 
         mock.perform(
                 post("/client")

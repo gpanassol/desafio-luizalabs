@@ -1,8 +1,6 @@
 package br.com.luiza.labs.challenge.controller;
 
 import br.com.luiza.labs.challenge.entity.Product;
-import br.com.luiza.labs.challenge.entity.ProductClient;
-import br.com.luiza.labs.challenge.service.impl.ProductClientImpl;
 import br.com.luiza.labs.challenge.service.impl.ProductServiceImpl;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
