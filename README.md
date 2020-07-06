@@ -2,13 +2,18 @@
 
 Projeto desenvolvido para o desafio LuizaLabs. Este desafio técnico tem como premissa a documentação [disponível aqui](https://gist.github.com/Bgouveia/9e043a3eba439489a35e70d1b5ea08ec).
 
-## Monitoração
+## Rodando o projeto
 
-A monitoração esta disponível utilizando [Spring Actuator](https://docs.spring.io/spring-boot/docs/current/reference/html/production-ready-features.html)
+Para buildar o projeto, validar os testes unitários, verificar style e verificar bugs:
+```
+./gradlew clean build
+```
 
-Os endpoints disponível para monitação são:
-- [/api/actuator/health](http://localhost:8080/api/actuator/health)
-- [/api/actuator/info](http://localhost:8080/api/actuator/info)
+Para rodar o projeto via linha de comando:
+
+```
+./gradlew build run
+```
 
 ## Documentação
 
@@ -16,6 +21,14 @@ A documentação esta disponível utilizando [Swagger API](https://swagger.io/)
 
 Para acesso:
 - [/api/swagger-ui.html](http://localhost:8080/api/swagger-ui.html)
+
+## Monitoração
+
+A monitoração esta disponível utilizando [Spring Actuator](https://docs.spring.io/spring-boot/docs/current/reference/html/production-ready-features.html)
+
+Os endpoints disponível para monitação são:
+- [/api/actuator/health](http://localhost:8080/api/actuator/health)
+- [/api/actuator/info](http://localhost:8080/api/actuator/info)
 
 ## Acesso
 
