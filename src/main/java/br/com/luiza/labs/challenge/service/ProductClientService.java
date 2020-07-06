@@ -5,4 +5,7 @@ import java.util.List;
 
 public interface ProductClientService {
     List<ProductClient> findAllProductByIdClient(Integer id);
+    ProductClient save(ProductClient product);
+    ProductClient updade(ProductClient product);
+    void delete(int clientID, int productID);
 }

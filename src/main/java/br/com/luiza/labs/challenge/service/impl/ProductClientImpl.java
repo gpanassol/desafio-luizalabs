@@ -19,4 +19,19 @@ public class ProductClientImpl implements ProductClientService {
     public List<ProductClient> findAllProductByIdClient(Integer id) {
         return repository.findAllProductByClientId(id);
     }
+
+    @Override
+    public ProductClient save(ProductClient product) {
+        return null;
+    }
+
+    @Override
+    public ProductClient updade(ProductClient product) {
+        return null;
+    }
+
+    @Override
+    public void delete(int clientID, int productID) {
+
+    }
 }
