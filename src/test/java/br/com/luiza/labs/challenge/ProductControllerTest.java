@@ -13,11 +13,12 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.ResultActions;
-
 import java.math.BigDecimal;
-
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
@@ -106,7 +107,7 @@ public class ProductControllerTest extends AbstractMvcTest {
         product.setTitle("Title Test 2 - UPDATED");
 
         mock.perform(
-                put("/product/" + product.getId() )
+                put("/product/" + product.getId())
                         .header("Authorization", token)
                         .contentType("application/json")
                         .content(objectMapper.writeValueAsString(product))
