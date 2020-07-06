@@ -1,6 +1,6 @@
 package br.com.luiza.labs.challenge.entity;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -32,7 +32,7 @@ public class Client {
     private String email;
 
     @OneToMany(mappedBy = "client")
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    private List<ProductClient> products;
+    @JsonIgnore
+    private List<Favorite> favorites;
 
 }

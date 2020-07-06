@@ -211,23 +211,4 @@ public class ProductControllerTest extends AbstractMvcTest {
                 .andExpect(status().isForbidden());
     }
 
-    @Test
-    public void shouldReturnClientProductInitial() throws Exception {
-        MvcResult result = getResultToken(mock).andReturn();
-        String token = result.getResponse().getHeaders("Authorization").get(0);
-        mock.perform(
-                get("/product/client/1")
-                        .header("Authorization", token))
-                .andExpect(status().isOk());
-    }
-
-    @Test
-    public void shouldClientProductNoContent() throws Exception {
-        MvcResult result = getResultToken(mock).andReturn();
-        String token = result.getResponse().getHeaders("Authorization").get(0);
-        mock.perform(
-                get("/product/client/133552")
-                        .header("Authorization", token))
-                .andExpect(status().isNoContent());
-    }
 }

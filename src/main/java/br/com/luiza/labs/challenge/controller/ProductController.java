@@ -1,8 +1,6 @@
 package br.com.luiza.labs.challenge.controller;
 
 import br.com.luiza.labs.challenge.entity.Product;
-import br.com.luiza.labs.challenge.entity.ProductClient;
-import br.com.luiza.labs.challenge.service.impl.ProductClientImpl;
 import br.com.luiza.labs.challenge.service.impl.ProductServiceImpl;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -30,9 +28,6 @@ public class ProductController {
     @Autowired
     private ProductServiceImpl service;
 
-    @Autowired
-    private ProductClientImpl productClientService;
-
     @ApiOperation(value = "Find a product registration by id")
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Return a product registration", response = Product.class),
@@ -53,21 +48,6 @@ public class ProductController {
     @RequestMapping(method = RequestMethod.GET)
     public ResponseEntity findAll(@RequestParam(defaultValue = "0") Integer page) {
         List<Product> products = service.findPaginated(page);
-        if (products.size() > 0) {
-            return ResponseEntity.ok(products);
-        }
-        return ResponseEntity.noContent().build();
-    }
-
-    @ApiOperation(value = "Find a list products registration by client id")
-    @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "Return a list products registration", response = Product.class, responseContainer = "List"),
-            @ApiResponse(code = 204, message = "No Content"),
-            @ApiResponse(code = 403, message = "Forbidden. Access is denied")
-    })
-    @RequestMapping(value = "/client/{id}", method = RequestMethod.GET)
-    public ResponseEntity findAllProductByIdClient(@PathVariable Integer id) {
-        List<ProductClient> products = productClientService.findAllProductByIdClient(id);
         if (products.size() > 0) {
             return ResponseEntity.ok(products);
         }

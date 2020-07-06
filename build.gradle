@@ -5,6 +5,8 @@ plugins {
 	id 'java'
 }
 
+apply plugin: 'java'
+apply plugin: 'application'
 apply plugin: 'checkstyle'
 
 group = 'br.com.luiza.labs.challenge'
@@ -18,6 +20,8 @@ checkstyle {
 repositories {
 	mavenCentral()
 }
+
+mainClassName = 'br.com.luiza.labs.challenge.FavoriteProductApplication'
 
 compileJava.options.encoding = java.nio.charset.StandardCharsets.UTF_8.displayName()
 
