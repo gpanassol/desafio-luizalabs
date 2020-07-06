@@ -8,6 +8,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
@@ -52,15 +53,16 @@ public class ProductControllerTest extends AbstractMvcTest {
         Product product = new Product();
         product.setTitle("Title Test");
         product.setMarca("brand Test");
-        product.setReviewScore(1D);
+        product.setReviewScore(1.0);
         product.setUrl("http://teste.com");
-        product.setPrice(BigDecimal.valueOf(1L));
+        product.setPrice(BigDecimal.valueOf(1.0));
 
         MvcResult result = getResultToken(mock).andReturn();
         String token = result.getResponse().getHeaders("Authorization").get(0);
         mock.perform(
                 post("/product/")
                         .header("Authorization", token)
+                        .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(product))
 
         ).andExpect(status().isCreated());
@@ -101,11 +103,10 @@ public class ProductControllerTest extends AbstractMvcTest {
 
         assertThat(product.getId()).isNotNull();
 
-        product = new Product();
         product.setTitle("Title Test 2 - UPDATED");
 
         mock.perform(
-                put("/product")
+                put("/product/" + product.getId() )
                         .header("Authorization", token)
                         .contentType("application/json")
                         .content(objectMapper.writeValueAsString(product))

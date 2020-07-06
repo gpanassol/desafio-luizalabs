@@ -11,10 +11,13 @@ import io.swagger.annotations.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 import java.util.List;
@@ -71,6 +74,53 @@ public class ProductController {
         return ResponseEntity.noContent().build();
     }
 
+    @ApiOperation(value = "Create a product registration")
+    @ApiResponses(value = {
+            @ApiResponse(code = 201, message = "Registry Created", response = Product.class),
+            @ApiResponse(code = 400, message = "Bad Request. Failed to save product."),
+            @ApiResponse(code = 403, message = "Forbidden. Access is denied")
+    })
+    @RequestMapping(method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.CREATED)
+    public Product save(@RequestBody @Validated Product product) {
+        return service.save(product);
+    }
 
+    @ApiOperation(value = "Update a product registration by id")
+    @ApiResponses(value = {
+            @ApiResponse(code = 201, message = "Registry Updated", response = Product.class),
+            @ApiResponse(code = 400, message = "Bad Request. Updated product not found", response = Product.class),
+            @ApiResponse(code = 403, message = "Forbidden. Access is denied")
+    })
+    @RequestMapping(value = "{id}", method = RequestMethod.PUT)
+    @ResponseStatus(HttpStatus.CREATED)
+    public Product update(@PathVariable Integer id,
+                         @RequestBody @Validated Product product) {
 
+        service.findProductById(id)
+                .map(productReturn -> {
+                    product.setId(productReturn.getId());
+                    productReturn = service.save(product);
+                    return productReturn;
+                }).orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST,  "Product not exist"));
+
+        return service.updade(product);
+    }
+
+    @ApiOperation(value = "Delete a product registration by id")
+    @ApiResponses(value = {
+            @ApiResponse(code = 201, message = "Registry Deleted"),
+            @ApiResponse(code = 400, message = "Delete product not found"),
+            @ApiResponse(code = 403, message = "Forbidden. Access is denied")
+    })
+    @RequestMapping(value = "{id}", method = RequestMethod.DELETE)
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void delete(@PathVariable Integer id) {
+        service.findProductById(id)
+                .map(product -> {
+                    service.delete(id);
+                    return product;
+                }).orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST,
+                "Product not content"));
+    }
 }

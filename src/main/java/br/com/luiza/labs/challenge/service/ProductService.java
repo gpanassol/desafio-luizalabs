@@ -9,5 +9,8 @@ public interface ProductService {
     Optional<Product> findProductById(Integer id);
     Product salve(Product product);
     List<Product> findPaginated(int pageNo);
+    Product save(Product product);
+    Product updade(Product product);
+    void delete(int id);
 
 }

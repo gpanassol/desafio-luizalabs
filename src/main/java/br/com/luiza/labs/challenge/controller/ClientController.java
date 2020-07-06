@@ -113,7 +113,7 @@ public class ClientController {
                     client.setId(clientReturn.getId());
                     clientReturn = service.save(client);
                     return clientReturn;
-                }).orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST,  "Updated client not found"));
+                }).orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST,  "Client not exist"));
 
         return service.updade(client);
     }
