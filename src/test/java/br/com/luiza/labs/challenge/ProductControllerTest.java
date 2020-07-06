@@ -30,6 +30,16 @@ public class ProductControllerTest extends AbstractMvcTest {
     }
 
     @Test
+    public void shouldProductNoContent() throws Exception {
+        MvcResult result = getResultToken(mock).andReturn();
+        String token = result.getResponse().getHeaders("Authorization").get(0);
+        mock.perform(
+                get("/product/999999")
+                        .header("Authorization", token))
+                .andExpect(status().isNoContent());
+    }
+
+    @Test
     public void shouldReturnListProduct() throws Exception {
         MvcResult result = getResultToken(mock).andReturn();
         String token = result.getResponse().getHeaders("Authorization").get(0);
@@ -37,5 +47,25 @@ public class ProductControllerTest extends AbstractMvcTest {
                 get("/product/?page=0")
                         .header("Authorization", token))
                 .andExpect(status().isOk());
+    }
+
+    @Test
+    public void shouldReturnClientProductInitial() throws Exception {
+        MvcResult result = getResultToken(mock).andReturn();
+        String token = result.getResponse().getHeaders("Authorization").get(0);
+        mock.perform(
+                get("/product/client/1")
+                        .header("Authorization", token))
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    public void shouldClientProductNoContent() throws Exception {
+        MvcResult result = getResultToken(mock).andReturn();
+        String token = result.getResponse().getHeaders("Authorization").get(0);
+        mock.perform(
+                get("/product/client/133552")
+                        .header("Authorization", token))
+                .andExpect(status().isNoContent());
     }
 }

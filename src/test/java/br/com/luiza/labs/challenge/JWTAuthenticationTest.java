@@ -22,7 +22,7 @@ public class JWTAuthenticationTest extends AbstractMvcTest {
 
     @Test
     public void shouldNotAllowAccessToUnauthenticated() throws Exception {
-        mock.perform(get("/api/client/hello")).andExpect(status().isForbidden());
+        mock.perform(get("/api/actuator/health")).andExpect(status().isForbidden());
     }
 
     @Test
@@ -36,7 +36,7 @@ public class JWTAuthenticationTest extends AbstractMvcTest {
         MvcResult result = getResultToken(mock).andReturn();
         String token = result.getResponse().getHeaders("Authorization").get(0);
         mock.perform(
-                get("/client/hello")
+                get("/actuator/health")
                         .header("Authorization", token))
                 .andExpect(status().isOk());
     }
