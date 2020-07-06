@@ -1,18 +1,24 @@
 package br.com.luiza.labs.challenge.controller;
 
-import br.com.luiza.labs.challenge.entity.Product;
 import br.com.luiza.labs.challenge.entity.Favorite;
+import br.com.luiza.labs.challenge.entity.Product;
 import br.com.luiza.labs.challenge.service.impl.FavoriteImpl;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
+import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.*;
-
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.server.ResponseStatusException;
 import java.util.List;
 
 @RestController
@@ -47,7 +53,20 @@ public class FavoriteController {
     @RequestMapping(method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
     public Favorite save(@RequestBody @Validated Favorite favorite) {
-        return service.save(favorite);
+        List<Favorite> favorites = service.findByProductId(favorite.getProduct().getId());
+        if (favorites.size() > 0) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Product duplicated");
+        }
+
+        try {
+            favorite = service.save(favorite);
+        } catch (Exception ex) {
+            if (ex.getCause() instanceof ConstraintViolationException) {
+                throw new ResponseStatusException(HttpStatus.BAD_REQUEST, ((ConstraintViolationException) ex.getCause()).getSQLException().getMessage());
+            }
+        }
+
+        return favorite;
     }
 }
 

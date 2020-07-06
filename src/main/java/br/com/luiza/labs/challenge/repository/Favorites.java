@@ -6,5 +6,6 @@ import java.util.List;
 
 public interface Favorites extends JpaRepository<Favorite, Integer> {
     List<Favorite> findAllProductByClientId(Integer idClient);
-    void deleteByProductIdAndClientId(Integer productID, Integer clientID);
+    List<Favorite> findByProductId(Integer productId);
+    void deleteByProductIdAndClientId(Integer productId, Integer clientId);
 }

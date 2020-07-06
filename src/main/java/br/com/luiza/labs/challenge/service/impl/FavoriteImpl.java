@@ -21,6 +21,11 @@ public class FavoriteImpl implements FavoriteService {
     }
 
     @Override
+    public List<Favorite> findByProductId(Integer productId) {
+        return repository.findByProductId(productId);
+    }
+
+    @Override
     public Favorite save(Favorite favorite) {
         return repository.save(favorite);
     }
