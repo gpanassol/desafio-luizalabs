@@ -45,7 +45,6 @@ dependencies {
 
 }
 
-
 apply plugin: "com.github.spotbugs-base"
 
 test {

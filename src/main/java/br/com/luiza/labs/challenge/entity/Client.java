@@ -1,14 +1,14 @@
 package br.com.luiza.labs.challenge.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import java.util.Set;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -21,7 +21,7 @@ import javax.persistence.Table;
 public class Client {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Integer id;
 
@@ -31,8 +31,8 @@ public class Client {
     @Column(name = "email", unique = true)
     private String email;
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "client" , fetch = FetchType.LAZY)
-    private Set<ProductClient> productClients;
+    @OneToMany(mappedBy = "client")
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    private List<ProductClient> products;
 
 }
