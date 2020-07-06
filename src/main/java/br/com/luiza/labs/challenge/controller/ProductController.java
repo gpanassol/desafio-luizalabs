@@ -46,7 +46,7 @@ public class ProductController {
 
     @ApiOperation(value = "Find a list pagined of product registration")
     @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "Return a list pagined of product registration. Page default 0 (zero) ", response = Product.class),
+            @ApiResponse(code = 200, message = "Return a list pagined of product registration. Page default 0 (zero) ", response = Product.class, responseContainer = "List"),
             @ApiResponse(code = 204, message = "No Content"),
             @ApiResponse(code = 403, message = "Forbidden. Access is denied")
     })
@@ -61,7 +61,7 @@ public class ProductController {
 
     @ApiOperation(value = "Find a list products registration by client id")
     @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "Return a list products registration", response = Product.class),
+            @ApiResponse(code = 200, message = "Return a list products registration", response = Product.class, responseContainer = "List"),
             @ApiResponse(code = 204, message = "No Content"),
             @ApiResponse(code = 403, message = "Forbidden. Access is denied")
     })

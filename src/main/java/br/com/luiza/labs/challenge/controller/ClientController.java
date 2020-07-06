@@ -30,9 +30,9 @@ public class ClientController {
     @Autowired
     private ClientServiceImpl service;
 
-    @ApiOperation(value = "Find all clients")
+    @ApiOperation(value = "Find a list of clients registration")
     @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "Return a register clients", response = Client.class),
+            @ApiResponse(code = 200, message = "Return a register clients", response = Client.class, responseContainer = "List"),
             @ApiResponse(code = 204, message = "No Content"),
             @ApiResponse(code = 403, message = "Forbidden. Access is denied")
     })
@@ -48,7 +48,7 @@ public class ClientController {
 
     @ApiOperation(value = "Find a list pagined of client registration")
     @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "Return a list pagined of client registration. Page default 0 (zero).", response = Client.class),
+            @ApiResponse(code = 200, message = "Return a list pagined of client registration. Page default 0 (zero).", response = Client.class, responseContainer = "List"),
             @ApiResponse(code = 204, message = "No Content"),
             @ApiResponse(code = 403, message = "Forbidden. Access is denied")
     })
