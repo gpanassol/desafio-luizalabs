@@ -35,4 +35,20 @@ public class ProductServiceImpl implements ProductService {
     public List<Product> findPaginated(int page) {
         return repository.findAll(PageRequest.of(page, pagesize)).toList();
     }
+
+    @Override
+    public Product save(Product product) {
+        return repository.save(product);
+    }
+
+    @Override
+    public Product updade(Product product) {
+        return repository.save(product);
+    }
+
+    @Override
+    public void delete(int id) {
+        repository.deleteById(id);
+    }
+
 }

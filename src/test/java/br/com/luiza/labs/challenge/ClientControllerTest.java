@@ -161,7 +161,7 @@ public class ClientControllerTest extends AbstractMvcTest {
         String contentAsString = mvcResult.getResponse().getContentAsString();
         client = objectMapper.readValue(contentAsString, Client.class);
 
-        assertThat(client.getId());
+        assertThat(client.getId()).isNotNull();
 
         mock.perform(
                 delete("/client/" + client.getId())
